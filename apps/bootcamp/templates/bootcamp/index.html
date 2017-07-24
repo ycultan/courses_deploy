@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add a student to all bootcamp courses</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link href="{% static 'bootcamp/css/style.css' %}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h1>Add a new course</h1>
+        <form action="/add_course" method="post">
+        {% csrf_token %}
+            <p>Name: <input type="text" name="name"></p>
+            <p class="desc"><span>Description:</span>
+            <textarea name="desc" cols="30" rows="10"></textarea>
+            <p><input type="submit" name="Add"></p>
+        </form>
+
+        <h3>Courses</h3>
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="/remove/{{course.id}}">remove</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

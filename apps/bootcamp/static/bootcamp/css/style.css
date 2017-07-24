@@ -1,0 +1,20 @@
+* {
+    font-family: 'Aclonica';
+}
+
+span {
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+    width: 200px;
+}
